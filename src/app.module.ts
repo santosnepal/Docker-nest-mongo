@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import configuration from './config/configuration';
 import { MongoModule } from './mongo/mongo.module';
 import { LoggingInterceptor } from './utils/interceptor/logging.interceptor';
+import { TransformInterceptor } from './utils/interceptor/transform.interceptor';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { LoggingInterceptor } from './utils/interceptor/logging.interceptor';
   controllers: [AppController],
   providers: [
     { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor },
+    { provide: APP_INTERCEPTOR, useClass: TransformInterceptor },
     AppService,
   ],
 })
